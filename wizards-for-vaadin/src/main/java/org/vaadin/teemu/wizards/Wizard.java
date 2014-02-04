@@ -292,7 +292,7 @@ public class Wizard extends CustomComponent implements UriFragmentChangedListene
 		return (step == currentStep);
 	}
 
-	private void updateButtons() {
+	public void updateButtons() {
 		backButton.setEnabled(!isFirstStep(currentStep));
 		if (isLastStep(currentStep)) {
 			finishButton.setEnabled(true);
@@ -301,7 +301,7 @@ public class Wizard extends CustomComponent implements UriFragmentChangedListene
 			AdvancedWizardStep step = AdvancedWizardStep.class.cast(currentStep);
 			finishButton.setEnabled(step.canFinish());
 			backButton.setEnabled(!isFirstStep(currentStep) && step.canBack());
-			nextButton.setEnabled(true);
+			nextButton.setEnabled(step.canNext());
 		} else {
 			finishButton.setEnabled(false);
 			nextButton.setEnabled(true);
